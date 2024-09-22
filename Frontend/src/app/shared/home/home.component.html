@@ -1,0 +1,13 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content class="bg-secondary">
+        <div class="d-flex justify-content-end w-100 py-2 px-3 text-white" style="background-color: #111C43;">
+            <div>
+                <h4 class="mb-0">Balance: {{balance | currency:'INR'}}</h4>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

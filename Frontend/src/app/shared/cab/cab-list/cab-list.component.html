@@ -1,0 +1,68 @@
+<div class="text-center my-4">
+    <h2 class="poppins-bold">Cab Details</h2>
+</div>
+
+<div class="container-fluid my-3">
+    <div>
+        <div class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" (click)="addNewCab()"><mat-icon>add</mat-icon>Add New Cab</button>
+        </div>
+        <div class="d-flex flex-wrap column-gap-100 my-3">
+            <div class="border shadow-sm p-4 br20 bg-white" style="width: 300px;" *ngFor="let cab of cabs">
+                <div class="d-flex justify-content-between mb-2">
+                    <h4 class="poppins-medium status-label text-white" [ngClass]="{'dark-yellow': cab.Status == 'Order Placed', 'blue': cab.Status == 'Delievered', 'green': cab.Status == 'Working'}" >{{cab.Status}}</h4>
+                    <mat-icon class="pointer" style="font-size: 20px;" (click)="editCab(cab)">edit</mat-icon>
+                </div>
+                <img src="../../../../assets/cabs/swift_dzire_tour_s bg.png" width="350px" alt="">
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Company: </span>
+                    <span>{{cab.Company.Company}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Model: </span>
+                    <span>{{cab.Model.Model}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Number Plate: </span>
+                    <span>{{cab.Number_plate}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Owner: </span>
+                    <span>{{cab.Ownership.Name}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Fuel: </span>
+                    <span>{{cab.Fuel}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Year: </span>
+                    <span>{{cab.Purchased_on | date: 'YYYY'}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Amount: </span>
+                    <span>{{cab.Amount | currency: 'INR'}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Purchased On: </span>
+                    <span>{{cab.Purchased_on | date: 'dd MMM YYYY'}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0">
+                    <span class="poppins-bold">Delievery On: </span>
+                    <span>{{cab.Delievery_on | date: 'dd MMM YYYY'}}</span>
+                </h5>
+                <h5 class="poppins-medium mb-0 d-flex">
+                    <span class="poppins-bold">Partners: </span>
+                    <span class="d-flex flex-column ml-1">
+                        <span *ngFor="let partner of cab.Partners">{{partner.Name}}</span>
+                    </span>
+                </h5>
+                <div class="mt-2">
+                    <button mat-stroked-button color="primary" [routerLink]="['/cab/' + cab.Cab_id + '/payment']">Payment Detail</button>
+                </div>
+                <div class="mt-2">
+                    <button mat-stroked-button color="primary">Loan Detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="d-flex my-2 mx-3 justify-content-between align-items-center">
+    <h3 class="poppins-medium mb-0 d-flex">{{data == null ? "Add new Cab" : "Edit Cab"}}</h3>
+    <mat-icon style="font-size: 20px;" [mat-dialog-close]="false">close</mat-icon>
+</div>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <form [formGroup]="cabForm">
+        <div class="d-grid grid-2 gap-20">
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Company_id">Company</h5>
+                <select formControlName="Company_id" class="form-select-sm poppins-regular w-100 border" name="Company_id" id="Company_id" (change)="companyChange()">
+                    <option class="poppins-regular p-2" *ngFor="let company of companies" [value]="company.Company_id">{{company.Company}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Company_id">Model</h5>
+                <select formControlName="Model_id" class="form-select-sm poppins-regular w-100 border" name="Model_id" id="Model_id">
+                    <option class="poppins-regular" *ngFor="let model of models" [value]="model.Model_id">{{model.Model}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Fuel">Fuel Type</h5>
+                <select formControlName="Fuel" class="form-select-sm poppins-regular w-100 border" name="Fuel" id="Fuel">
+                    <option class="poppins-regular" value="Petrol">Petrol</option>
+                    <option class="poppins-regular" value="Diesel">Diesel</option>
+                    <option class="poppins-regular" value="CNG and Petrol">CNG and Petrol</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Amount">Amount</h5>
+                <div class="d-flex">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 5px 0px 0px 5px;">₹</h5>
+                    <input formControlName="Amount" type="text" class="border form-select-sm w-100 poppins-regular" aria-label="Amount (to the nearest dollar)" style="border-radius: 0px !important;">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 0px 5px 5px 0px;">.00</h5>
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Number_plate">Number Plate</h5>
+                <input type="text" formControlName="Number_plate" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Status">Status</h5>
+                <select formControlName="Status" class="form-select-sm poppins-regular w-100 border" name="Status" id="Status">
+                    <option class="poppins-regular" value="Order Placed">Order Placed</option>
+                    <option class="poppins-regular" value="Delievered">Delievered</option>
+                    <option class="poppins-regular" value="Working">Working</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Ownership">Ownership</h5>
+                <select formControlName="Ownership" class="form-select-sm poppins-regular w-100 border" name="Ownership" id="Ownership">
+                    <option class="poppins-regular" *ngFor="let user of users" [value]="user.User_id">{{user.Name}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Partners">Partners</h5>
+                <select formControlName="Partners" class="form-select-sm poppins-regular w-100 border" name="Partners" id="Partners" (change)="addPartners()">
+                    <option class="poppins-regular" *ngFor="let user of users" [value]="user.User_id">{{user.Name}}</option>
+                </select>
+                <div class="d-flex">
+                    <h5 class="mr-1 my-1 multi-select poppins-medium" *ngFor="let partner of Partners">
+                        {{partner.Name}} 
+                        <mat-icon class="pointer" (click)="removePartner(partner)">close</mat-icon>
+                    </h5>
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Purchased_on">Purchased On</h5>
+                <input type="date" formControlName="Purchased_on" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Delievery_on">Delievery On</h5>
+                <input type="date" formControlName="Delievery_on" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="p-3">
+    <button mat-raised-button color="accet" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="data == null ? addCab() : editCab()">{{ data == null ? "Add Cab" : "Edit Cab"}}</button>
+</mat-dialog-actions>

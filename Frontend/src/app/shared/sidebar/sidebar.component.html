@@ -1,0 +1,65 @@
+<div class="vh-100 d-flex flex-column flex-shrink-0 p-3 text-white bg-primary" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <img src="../../../assets/logo/3.png" width="40px" alt="">
+      <span class="ml-2 fs-4">Urban Cabs</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : home }" (click)="home = true; loans = false; cabs = false; loanspayment = false; income = false; expense = false; booking = false" [routerLink]="['/']">
+          <mat-icon class="sidebar-icon" aria-hidden="false" fontIcon="home"></mat-icon>
+          <span class="ml-1">Home</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : loans }" (click)="home = false; loans = true; cabs = false; loanspayment = false; income = false; expense = false; booking = false" [routerLink]="['/loans']">
+          <mat-icon class="sidebar-icon" fontIcon="attach_money"></mat-icon>
+          <span class="ml-1">Loan</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : loanspayment }" (click)="home = false; loans = false; cabs = false; loanspayment = true; income = false; expense = false; booking = false" [routerLink]="['/loans/payment']">
+          <mat-icon class="sidebar-icon" fontIcon="attach_money"></mat-icon>
+          <span class="ml-1">Loan Repayment</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : cabs }" (click)="home = false; loans = false; cabs = true; loanspayment = false; income = false; expense = false; booking = false" [routerLink]="['/cabs']">
+          <mat-icon class="sidebar-icon" fontIcon="pie_chart"></mat-icon>
+          <span class="ml-1">Cab</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : booking }" (click)="home = false; loans = false; cabs = false; loanspayment = false; income = false; expense = false; booking = true" [routerLink]="['booking']">
+          <mat-icon class="sidebar-icon" fontIcon="library_books"></mat-icon>
+          <span class="ml-1">Booking</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : income }" (click)="home = false; loans = false; cabs = false; loanspayment = false; income = true; expense = false; booking = false" [routerLink]="['payment/income']">
+          <mat-icon class="sidebar-icon" fontIcon="monetization_on"></mat-icon>
+          <span class="ml-1">Income</span>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="nav-link pointer d-flex align-items-center text-white" [ngClass]="{ 'active' : expense }" (click)="home = false; loans = false; cabs = false; loanspayment = false; income = false; expense = true; booking = false" [routerLink]="['payment/expense']">
+          <mat-icon class="sidebar-icon" fontIcon="monetization_on"></mat-icon>
+          <span class="ml-1">Expense</span>
+        </div>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>mdo</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+</div>

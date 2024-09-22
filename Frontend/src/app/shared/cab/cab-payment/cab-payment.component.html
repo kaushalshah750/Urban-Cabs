@@ -1,0 +1,102 @@
+<div class="container-fluid my-3">
+    <div>
+        <div class="bg-white br5 w-100 p-3 shadow-sm border position-relative">
+            <div class="status-popup">
+                <h4 class="poppins-medium status-label text-white" [ngClass]="{'dark-yellow': cab.Amount - amount_paid != 0, 'green': cab.Amount - amount_paid == 0}" >{{cab.Amount - amount_paid != 0 ? "Payment Pending" : "Payment Done"}}</h4>
+            </div>
+            <div class="d-grid grid-3">
+                <div>
+                    <div class="mb-3">
+                        <img src="../../../../assets/cabs/swift_dzire_tour_s bg.png" width="200px" alt="">
+                    </div>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Company: </span>
+                        <span>{{cab.Company.Company}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Model: </span>
+                        <span>{{cab.Model.Model}}</span>
+                    </h4>
+                </div>
+                <div>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Number Plate: </span>
+                        <span>{{cab.Number_plate}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Owner: </span>
+                        <span>{{cab.Ownership.Name}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Fuel: </span>
+                        <span>{{cab.Fuel}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Year: </span>
+                        <span>{{cab.Purchased_on | date: 'YYYY'}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Amount Total: </span>
+                        <span>{{cab.Amount | currency: 'INR'}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Amount Paid: </span>
+                        <span>{{amount_paid | currency: 'INR'}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Amount Pending: </span>
+                        <span>{{cab.Amount - amount_paid | currency: 'INR'}}</span>
+                    </h4>
+                </div>
+                <div>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Purchased On: </span>
+                        <span>{{cab.Purchased_on | date: 'dd MMM YYYY'}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0">
+                        <span class="poppins-bold">Delievery On: </span>
+                        <span>{{cab.Delievery_on | date: 'dd MMM YYYY'}}</span>
+                    </h4>
+                    <h4 class="poppins-medium mb-0 d-flex align-items-center">
+                        <span class="poppins-bold">Partners: </span>
+                        <span class="d-flex ml-0">
+                            <h5 class="multi-select ml-1 poppins-medium mb-0" *ngFor="let partner of cab.Partners">{{partner.Name}}</h5>
+                        </span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="d-flex justify-content-end my-3">
+            <button mat-raised-button color="primary" (click)="addCabPayent()"><mat-icon>add</mat-icon>Add Cab Payment</button>
+        </div>
+        <div>
+            <table class="table poppins-medium border shadow-sm">
+                <thead>
+                    <tr>
+                        <th style="width: 120px;">Payment Id</th>
+                        <th>Reason</th>
+                        <th>Amount</th>
+                        <th>Paid By</th>
+                        <th>Paid On</th>
+                        <th style="width: 70px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let payment of payments">
+                        <td> {{payment.Payment_id}} </td>
+                        <td> {{payment.Remark}} </td>
+                        <td> {{payment.Amount | currency: 'INR'}} </td>
+                        <td> {{payment.User.Name}} </td>
+                        <td> {{payment.Paid_on | date: 'dd MMM YYYY'}} </td>
+                        <td>
+                            <mat-icon class="mb-0 h5 pointer" (click)="editCabPayment(payment)">edit</mat-icon>
+                            <mat-icon class="mb-0 h5 pointer" (click)="deleteCabPayment(payment.Payment_id)">close</mat-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

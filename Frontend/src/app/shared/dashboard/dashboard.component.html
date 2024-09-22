@@ -1,0 +1,59 @@
+<div class="container-fluid my-3">
+
+    <div class="d-grid grid-12 column-gap-3">
+        <div class="d-grid grid-2 column-gap-3 row-gap-3">
+            <div class="border br20 shadow p-4 bg-white d-flex flex-column align-items-center justify-content-center">
+                <h3 class="poppins-medium mb-0">Monthly EMI </h3>
+                <h1 class="roboto-bold mb-0">{{monthlyEmi.Monthly_emi| currency: 'INR'}}</h1>
+            </div>
+            <div class="border br20 shadow p-4 bg-white d-flex flex-column align-items-center justify-content-center">
+                <h3 class="poppins-medium mb-0">Monthly EMI</h3>
+                <h1 class="roboto-bold mb-0">{{monthlyEmi.Monthly_emi| currency: 'INR'}}</h1>
+            </div>
+            <div class="border br20 shadow p-4 bg-white d-flex flex-column align-items-center justify-content-center">
+                <h3 class="poppins-medium mb-0">Monthly EMI</h3>
+                <h1 class="roboto-bold mb-0">{{monthlyEmi.Monthly_emi| currency: 'INR'}}</h1>
+            </div>
+            <div class="border br20 shadow p-4 bg-white d-flex flex-column align-items-center justify-content-center">
+                <h3 class="poppins-medium mb-0">Monthly EMI</h3>
+                <h1 class="roboto-bold mb-0">{{monthlyEmi.Monthly_emi| currency: 'INR'}}</h1>
+            </div>
+        </div>
+        <div class="border br20 shadow p-4 bg-white">
+            <div>
+                <table class="table poppins-medium border">
+                    <thead>
+                        <tr>
+                            <th class="poppins-medium" style="width: 70px;"><h4 class="poppins-bold mb-0">Loan Id</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Cab</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Amount</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Bank</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Interest Rate</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Tenure ( Months )</h4></th>
+                            <th class="poppins-medium"><h4 class="poppins-bold mb-0">Borrowed By</h4></th>
+                            <th class="poppins-medium" style="width: 120px;"><h4 class="poppins-bold mb-0">Status</h4></th>
+                            <th class="poppins-medium" style="width: 70px;"><h4 class="poppins-bold mb-0">Action</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let loan of loans">
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Loan_id }}</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Cab.Company }} {{ loan.Cab.Model }} ( {{loan.Cab.Number_plate == "" ? "New" : loan.Cab.Number_plate}} )</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Amount | currency: 'INR' }}</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Bank.Name }}</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Interest_rate }}%</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Tenure }}</h5></td>
+                            <td><h5 class="mb-0 poppins-medium">{{ loan.Borrowed_by.Name }}</h5></td>
+                            <td><h5 class="mb-0 poppins-medium status-label poppins-medium text-center text-white" [ngClass]="{'green': loan.Status == 'Closed', 'dark-yellow': loan.Status == 'Active', 'red': loan.Status == 'Pending'}" >{{loan.Status}}</h5></td>
+                            <td class="text-center">
+                                <mat-icon class="mb-0 h5 pointer" (click)="editLoan(loan)">edit</mat-icon>
+                                <mat-icon class="mb-0 h5 pointer" (click)="removeLoan(loan.Loan_id)">close</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

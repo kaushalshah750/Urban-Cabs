@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <section class="d-flex justify-content-end">
+    <div class="example-button-row py-3">
+      <button mat-flat-button color="primary" (click)="addIncome()">Add Income</button>
+    </div>
+  </section>
+  <div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Reason</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th style="width: 70px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let income of incomes">
+            <td>{{income.Reason}}</td>
+            <td>{{income.Amount | currency : 'INR'}}</td>
+            <td>{{income.Income_Date | date: 'dd MMM yyyy'}}</td>
+            <td>
+              <mat-icon class="pointer" style="font-size: 20px;" (click)="editIcome(income)">edit</mat-icon>
+              <mat-icon class="pointer" style="font-size: 20px;" (click)="deleteIcome(income)">delete</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

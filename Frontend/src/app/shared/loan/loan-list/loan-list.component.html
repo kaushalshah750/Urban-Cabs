@@ -1,0 +1,73 @@
+<div class="text-center my-4">
+    <h2 class="poppins-bold">Loan Details</h2>
+</div>
+
+<div class="mx-4 my-4">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+        <!-- <div class="d-flex align-items-center">
+            <h3 class="mb-0 poppins-medium mr-3">Loan Details</h3>
+        </div> -->
+        <div class="d-flex align-items-center">
+            <h3 class="mb-0 poppins-medium mr-2">Filter by:</h3>
+
+            <select name="" id="" class="form-select-sm poppins-medium mr-2" [(ngModel)]="bankFilter">
+                <option class="poppins-medium px-3" value="0" disabled>Select a Bank</option>
+                <option class="poppins-medium px-3" *ngFor="let bank of banks" [value]="bank.Bank_id">{{bank.Name}}</option>
+            </select>
+
+            <select name="" id="" class="form-select-sm poppins-medium mr-2" [(ngModel)]="userFilter">
+                <option class="poppins-medium px-3" value="0" disabled>Select a User</option>
+                <option class="poppins-medium px-3" *ngFor="let user of users" [value]="user.User_id">{{user.Name}}</option>
+            </select>
+
+            <select name="" id="" class="form-select-sm poppins-medium mr-2" [(ngModel)]="statusFilter">
+                <option class="poppins-medium px-3" value="" disabled>Select a Status</option>
+                <option class="poppins-medium px-3" value="Active">Active</option>
+                <option class="poppins-medium px-3" value="Pending">Pending</option>
+                <option class="poppins-medium px-3" value="Closed">Closed</option>
+            </select>
+
+            <button mat-raised-button color="primary" (click)="clearFilter()"><mat-icon>close</mat-icon>Clear</button>
+
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="addNewLoan()"><mat-icon>add</mat-icon>Add Loan</button>
+        </div>
+    </div>
+    <div>
+        <table class="table poppins-medium">
+            <thead>
+                <tr>
+                    <th style="width: 70px;">Loan Id</th>
+                    <th>Cab</th>
+                    <th>Amount</th>
+                    <th>Bank</th>
+                    <th>Interest Rate</th>
+                    <th>Tenure ( Months )</th>
+                    <th>Montly EMI</th>
+                    <th>Borrowed By</th>
+                    <th style="width: 120px;">Status</th>
+                    <th style="width: 100px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let loan of loans">
+                    <td>{{ loan.Loan_id }}</td>
+                    <td>{{ loan.Cab.Company }} {{ loan.Cab.Model }} ( {{loan.Cab.Number_plate == "" ? "New" : loan.Cab.Number_plate}} )</td>
+                    <td>{{ loan.Amount | currency: 'INR' }}</td>
+                    <td>{{ loan.Bank.Name }}</td>
+                    <td>{{ loan.Interest_rate }}%</td>
+                    <td>{{ loan.Tenure }}</td>
+                    <td>{{ loan.Monthly_emi | currency: 'INR' }}</td>
+                    <td>{{ loan.Borrowed_by.Name }}</td>
+                    <td><h4 class="status-label poppins-medium text-center text-white" [ngClass]="{'green': loan.Status == 'Closed', 'dark-yellow': loan.Status == 'Active', 'red': loan.Status == 'Pending'}" >{{loan.Status}}</h4></td>
+                    <td class="text-center">
+                        <mat-icon class="mb-0 h5 pointer" (click)="editLoan(loan)">edit</mat-icon>
+                        <mat-icon class="mb-0 h5 pointer mx-1" (click)="openLoanDetails(loan.Loan_id)">visibility</mat-icon>
+                        <mat-icon class="mb-0 h5 pointer" (click)="removeLoan(loan.Loan_id)">close</mat-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

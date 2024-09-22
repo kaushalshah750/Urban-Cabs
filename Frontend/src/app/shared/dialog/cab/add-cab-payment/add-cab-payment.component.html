@@ -1,0 +1,43 @@
+<div class="d-flex my-2 mx-3 justify-content-between align-items-center">
+    <h3 class="poppins-medium mb-0 d-flex">{{data.Payment_id == 0 ? "Add new Cab Payment" : "Edit Cab Payment"}}</h3>
+    <mat-icon style="font-size: 20px;" [mat-dialog-close]="false">close</mat-icon>
+</div>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <form [formGroup]="paymentForm">
+        <div class="d-grid grid-2 gap-20">
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Remark">Reason</h5>
+                <input type="text" formControlName="Remark" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Amount">Amount</h5>
+                <div class="d-flex">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 5px 0px 0px 5px;">₹</h5>
+                    <input formControlName="Amount" type="text" class="border form-select-sm w-100 poppins-regular" aria-label="Amount (to the nearest dollar)" style="border-radius: 0px !important;">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 0px 5px 5px 0px;">.00</h5>
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="User_id">Paid By</h5>
+                <select formControlName="User_id" class="form-select-sm poppins-regular w-100 border" name="User_id" id="User_id">
+                    <option class="poppins-regular" *ngFor="let user of users" [value]="user.User_id">{{user.Name}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Paid_on">Paid On</h5>
+                <input type="date" formControlName="Paid_on" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="p-3">
+    <button mat-raised-button color="accet" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="data.Payment_id == 0 ? addCabPayment() : editCabPayment()">{{ data.Payment_id == 0 ? "Add Cab Payment" : "Edit Cab Payment"}}</button>
+</mat-dialog-actions>

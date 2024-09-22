@@ -1,0 +1,35 @@
+<div class="d-flex my-2 mx-3 justify-content-between align-items-center">
+    <h3 class="poppins-medium mb-0 d-flex">{{data == null ? "Add new Expense" : "Edit Expense"}}</h3>
+    <mat-icon style="font-size: 20px;" [mat-dialog-close]="false">close</mat-icon>
+</div>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <form [formGroup]="expenseForm">
+        <div class="d-grid grid-2 gap-20">
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Reason">Reason</h5>
+                <input type="text" formControlName="Reason" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Amount">Amount</h5>
+                <div class="d-flex">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 5px 0px 0px 5px;">₹</h5>
+                    <input formControlName="Amount" type="text" class="border form-select-sm w-100 poppins-regular" aria-label="Amount (to the nearest dollar)" style="border-radius: 0px !important;">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 0px 5px 5px 0px;">.00</h5>
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Expense_Date">Expense Date</h5>
+                <input type="date" formControlName="Expense_Date" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="p-3">
+    <button mat-raised-button color="accet" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="data == null ? addNewExpense() : editExpense()">{{ data == null ? "Add Expense" : "Edit Expense"}}</button>
+</mat-dialog-actions>

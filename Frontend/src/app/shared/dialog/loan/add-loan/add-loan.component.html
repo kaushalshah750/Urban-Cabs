@@ -1,0 +1,81 @@
+<div class="d-flex my-2 mx-3 justify-content-between align-items-center">
+    <h3 class="poppins-medium mb-0 d-flex">{{this.data == null ? "Add new Loan" : "Edit Loan"}}</h3>
+    <mat-icon style="font-size: 20px;" [mat-dialog-close]="false">close</mat-icon>  
+</div>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+    <form [formGroup]="loanForm">
+        <div class="d-grid grid-2 gap-20">
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Cab_id">Cab</h5>
+                <select formControlName="Cab_id" class="form-select-sm poppins-regular w-100 border" name="Cab_id" id="Cab_id">
+                    <option class="poppins-regular p-2" *ngFor="let cab of cabs" [value]="cab.Cab_id">{{cab.Company.Company}} {{cab.Model.Model}} ( {{cab.Number_plate == "" ? "New" : cab.Number_plate}} )</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Bank_id">Bank</h5>
+                <select formControlName="Bank_id" class="form-select-sm poppins-regular w-100 border" name="Bank_id" id="Bank_id">
+                    <option class="poppins-regular p-2" *ngFor="let bank of banks" [value]="bank.Bank_id">{{bank.Name}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Amount">Loan Amount</h5>
+                <div class="d-flex">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 5px 0px 0px 5px;">₹</h5>
+                    <input formControlName="Amount" type="text" class="border form-select-sm w-100 poppins-regular" style="border-radius: 0px 5px 5px 0px;">
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Disbursed_amount">Disbursed Amount</h5>
+                <div class="d-flex">
+                    <h5 class="input-group-text mb-0 poppins-regular" style="border-radius: 5px 0px 0px 5px;">₹</h5>
+                    <input formControlName="Disbursed_amount" type="text" class="border form-select-sm w-100 poppins-regular" style="border-radius: 0px 5px 5px 0px;">
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Interest_rate">Interest Rate</h5>
+                <input type="number" formControlName="Interest_rate" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Monthly_emi">Monthly EMI</h5>
+                <input type="number" formControlName="Monthly_emi" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Tenure">Tenure</h5>
+                <input type="number" formControlName="Tenure" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Borrowed_by">Borrowed By</h5>
+                <select formControlName="Borrowed_by" class="form-select-sm poppins-regular w-100 border" name="Borrowed_by" id="Borrowed_by">
+                    <option class="poppins-regular" *ngFor="let user of users" [value]="user.User_id">{{user.Name}}</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Status">Status</h5>
+                <select formControlName="Status" class="form-select-sm poppins-regular w-100 border" name="Status" id="Status">
+                    <option class="poppins-regular" value="Pending">Pending</option>
+                    <option class="poppins-regular" value="Active">Active</option>
+                    <option class="poppins-regular" value="Closed">Closed</option>
+                </select>
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="Start_date">Start On</h5>
+                <input type="date" formControlName="Start_date" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+            <div>
+                <h5 class="mb-0 poppins-medium" for="End_date">End On</h5>
+                <input type="date" formControlName="End_date" class="form-select-sm poppins-regular w-100 border px-2">
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="end" class="p-3">
+    <button mat-raised-button color="accet" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="this.data == null ? addLoan() : editLoan()">{{this.data == null ? "Add Loan" : "Edit Loan"}}</button>
+</mat-dialog-actions>

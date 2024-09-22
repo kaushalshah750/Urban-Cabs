@@ -1,0 +1,65 @@
+<div class="container-fluid my-3">
+    <div class="bg-white br5 w-100 p-3 shadow-sm border position-relative d-grid grid-3">
+        <div>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Loan ID: </span>
+                <span>{{loan.Loan_id}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Loan Amount: </span>
+                <span>{{loan.Amount}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Disbursed Amount: </span>
+                <span>{{loan.Disbursed_amount}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Monthly EMI: </span>
+                <span>{{loan.Monthly_emi}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Tenure: </span>
+                <span>{{loan.Tenure}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">EMI Paid: </span>
+                <span>{{loan.EMI_paid}} of {{loan.Tenure}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">EMI Start Date: </span>
+                <span>{{loan.Start_date | date:'dd-MM-YYYY'}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">EMI End Date: </span>
+                <span>{{loan.End_date | date:'dd-MM-YYYY'}}</span>
+            </h4>
+        </div>
+        <div>
+            <!-- <h3 class="poppins-bold mb-1">Bank:-</h3> -->
+    
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Bank Name: </span>
+                <span>{{loan.Bank.Name}}</span>
+            </h4>
+    
+            <!-- <h3 class="poppins-bold mt-1 mb-1">Cab:-</h3> -->
+    
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Company: </span>
+                <span>{{loan.Cab.Company}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Model: </span>
+                <span>{{loan.Cab.Model}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Number Plate: </span>
+                <span>{{loan.Cab.Number_plate}}</span>
+            </h4>
+            <h4 class="poppins-medium mb-0">
+                <span class="poppins-bold">Fuel: </span>
+                <span>{{loan.Cab.Fuel}}</span>
+            </h4>
+        </div>
+    </div>
+</div>
